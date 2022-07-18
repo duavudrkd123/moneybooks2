@@ -1,0 +1,41 @@
+buildscript {
+    ext {
+        springBootVersion = '2.1.7.RELEASE'
+    }
+    repositories{
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+/*
+- 위 코드는 이 플젝의 플러그인 의존성 관리를 위한 설정
+- ext: build.gradle 에서 사용하는 전역변수를 설정하겠다는 의미
+- 여기서는 스프링 부트 버전 전역변수를 생성하고 값을 2.1.7... 로 하겠다는 의미임
+*/
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+group 'com.aous.moneybook'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+    }
+dependencies {
+    implementation('org.springframework.boot:spring-boot-starter-web')
+    testImplementation('org.springframework.boot:spring-boot-starter-test')
+    }
+/*
+- repositories 는 각종 의존성 들을 어떤 원격저장소에서 받을지 정하는 것
+기본적으로 메이븐센트럴을 많이 사용하는 데 라이브러리 업로드 난이도 때문에 제이센터도 많이 사용함
+- jcenter 지원 종료로 mavenCentral만 사용 가능
+-추가가 완료 되면
+-compile 명령어가 Gradle 최신버전에서 삭제가 되어서 implementation 을 사용해야됨
+-TestCompile 명령어도 삭제되어서 testImplementation를 사용해야됨
+
+
+*/
